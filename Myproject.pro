@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     ListNode.cpp \
+    basic_file_system.cpp \
     customwidget.cpp \
     longest_palindrome.cpp \
     main.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     ListNode.h \
+    basic_file_system.h \
     customwidget.h \
     longest_palindrome.h \
     mainwindow.h \
@@ -39,5 +41,4 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES += \
-    resources.qrc
+RESOURCES +=

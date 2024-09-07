@@ -1,0 +1,33 @@
+FROM ubuntu:22.04
+
+# Set environment variables to avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Set the default time zone to prevent tzdata from prompting
+RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+    apt-get update && apt-get install -y tzdata
+
+# Install necessary packages including xcb dependencies
+RUN apt-get update && apt-get install -y \
+    qtcreator \
+    qtbase5-dev \
+    qt5-qmake \
+    qttools5-dev-tools \
+    build-essential \
+    libgl1-mesa-glx \
+    libx11-xcb1 \
+    libxcb-util1 \
+    libxcb-keysyms1 \
+    libxcb-xinerama0 \
+    libxcb-icccm4 \
+    libxcb-image0 \
+    libxcb-randr0 \
+    libxcb-render-util0 \
+    libxcb-shape0 \
+    libxcb-xfixes0 \
+    libxcb-sync1 \
+    libxcb-xkb1 \
+    libxkbcommon-x11-0 \
+    x11-apps && \
+    rm -rf /var/lib/apt/lists/*
+
