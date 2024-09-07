@@ -7,6 +7,9 @@
 #include "threadsafequeue.h"
 #include <thread>
 #include <vector>
+#include "matrix_multiplication.h"
+#include "invalid_argument_exception.h"
+#include "merge_sort.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,6 +21,13 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void validateInput(int number) {
+    if (number < 0) {
+        throw InvalidArgumentException("Invalid input: number cannot be negative.");
+    }
+    std::cout << "Valid input: " << number << std::endl;
 }
 
 
@@ -75,6 +85,60 @@ void MainWindow::on_myButton_clicked()
     producer.join();
     consumer.join();
 
+
+    // Define two matrices
+    std::vector<std::vector<int>> matrixA = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    std::vector<std::vector<int>> matrixB = {
+        {7, 8},
+        {9, 10},
+        {11, 12}
+    };
+
+    try {
+        // Multiply the matrices
+        std::vector<std::vector<int>> result = multiplyMatrices(matrixA, matrixB);
+
+        // Print the result
+        std::cout << "Result matrix:" << std::endl;
+        for (const auto& row : result) {
+            for (int val : row) {
+                std::cout << val << " ";
+            }
+            std::cout << std::endl;
+        }
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    try {
+        // Test with valid input
+        validateInput(10);
+
+        // Test with invalid input
+        validateInput(-5);
+    } catch (const InvalidArgumentException& e) {
+        std::cerr << "Caught exception: " << e.what() << std::endl;
+    }
+
+    std::vector<int> arr = {38, 27, 43, 3, 9, 82, 10};
+
+    std::cout << "Original array: ";
+    for (int num : arr) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    mergeSort(arr); // Sort the array
+
+    std::cout << "Sorted array: ";
+    for (int num : arr) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
 
     QMessageBox::information(this, "Button Clicked", "You clicked the button!");
 }

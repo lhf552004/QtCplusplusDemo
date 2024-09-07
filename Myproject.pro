@@ -15,16 +15,22 @@ SOURCES += \
     longest_palindrome.cpp \
     main.cpp \
     mainwindow.cpp \
+    matrix_multiplication.cpp \
     memory_pool_allocator.cpp \
+    merge_sort.cpp \
     singletondemo.cpp
 
 HEADERS += \
     ListNode.h \
     basic_file_system.h \
     customwidget.h \
+    invalid_argument_exception.h \
     longest_palindrome.h \
     mainwindow.h \
+    matrix_multiplication.h \
     memory_pool_allocator.h \
+    merge_sort.h \
+    observer_pattern.h \
     singletondemo.h \
     threadsafequeue.h
 
