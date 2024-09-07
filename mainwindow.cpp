@@ -10,6 +10,9 @@
 #include "matrix_multiplication.h"
 #include "invalid_argument_exception.h"
 #include "merge_sort.h"
+#include "graph.h"
+#include "mystring.h"
+#include "json_parser.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -140,7 +143,57 @@ void MainWindow::on_myButton_clicked()
     }
     std::cout << std::endl;
 
+    Graph g;
+
+    // Add edges to the graph
+    g.addEdge(1, 2);
+    g.addEdge(1, 3);
+    g.addEdge(2, 4);
+    g.addEdge(3, 4);
+    g.addEdge(3, 5);
+    g.addEdge(4, 5);
+    g.addEdge(4, 6);
+
+    int start = 1;
+    int end = 6;
+
+    // Find and print the shortest path between start and end
+    g.findShortestPath(start, end);
+
+    MyString str1("Hello");
+    MyString str2("World");
+
+    // Test concatenation
+    MyString s3 = str1 + ", " + str2 + "!";
+    std::cout << "Concatenated string: " << s3 << std::endl;
+
+    // Test comparison
+    MyString s4("Hello");
+    std::cout << "s1 and s4 are " << (str1 == s4 ? "equal" : "not equal") << std::endl;
+
+    // Test length
+    std::cout << "Length of s3: " << s3.length() << std::endl;
+
+    // Test substring
+    MyString sub = s3.substring(7, 5);
+    std::cout << "Substring of s3: " << sub << std::endl;
+
+
     QMessageBox::information(this, "Button Clicked", "You clicked the button!");
 }
 
+
+
+void MainWindow::on_secondButton_clicked()
+{
+    try {
+        // Read JSON from file
+        json j = JsonParser::readJsonFromFile("data.json");
+
+        // Handle JSON data
+        JsonParser::handleJson(j);
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+}
 

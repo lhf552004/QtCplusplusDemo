@@ -7,6 +7,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
     apt-get update && apt-get install -y tzdata
 
+# Enable the universe and multiverse repositories
+RUN apt-get update && apt-get install -y software-properties-common && \
+    add-apt-repository universe && \
+    add-apt-repository multiverse && \
+    apt-get update
+
 # Install necessary packages including xcb dependencies
 RUN apt-get update && apt-get install -y \
     qtcreator \
@@ -28,6 +34,7 @@ RUN apt-get update && apt-get install -y \
     libxcb-sync1 \
     libxcb-xkb1 \
     libxkbcommon-x11-0 \
-    x11-apps && \
+    x11-apps \
+    libboost-all-dev \
+    nlohmann-json3-dev && \
     rm -rf /var/lib/apt/lists/*
-

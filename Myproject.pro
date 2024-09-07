@@ -12,25 +12,33 @@ SOURCES += \
     ListNode.cpp \
     basic_file_system.cpp \
     customwidget.cpp \
+    graph.cpp \
+    json_parser.cpp \
     longest_palindrome.cpp \
     main.cpp \
     mainwindow.cpp \
     matrix_multiplication.cpp \
     memory_pool_allocator.cpp \
     merge_sort.cpp \
+    mystring.cpp \
+    producer_consumer.cpp \
     singletondemo.cpp
 
 HEADERS += \
     ListNode.h \
     basic_file_system.h \
     customwidget.h \
+    graph.h \
     invalid_argument_exception.h \
+    json_parser.h \
     longest_palindrome.h \
     mainwindow.h \
     matrix_multiplication.h \
     memory_pool_allocator.h \
     merge_sort.h \
+    mystring.h \
     observer_pattern.h \
+    producer_consumer.h \
     singletondemo.h \
     threadsafequeue.h
 
