@@ -18,6 +18,8 @@
 #include <QTextStream>
 #include "dragdropwindow.h"
 #include "filesystemmonitor.h"
+#include "Base.h"
+#include <memory>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -257,5 +259,12 @@ void MainWindow::on_watcherButton_clicked()
     window->show();
     window->raise();  // Bring it to the front
     window->activateWindow();  // Give it focus
+}
+
+
+void MainWindow::on_templateButton_clicked()
+{
+    auto d = std::make_unique<Derived>();
+    d->interface();  // Output: "Derived implementation"
 }
 
