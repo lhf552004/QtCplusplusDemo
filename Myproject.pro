@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,8 +11,14 @@ CONFIG += c++11
 SOURCES += \
     ListNode.cpp \
     basic_file_system.cpp \
+    chatwindow.cpp \
+    contactsmanager.cpp \
     customwidget.cpp \
+    digitalclock.cpp \
+    dragdropwindow.cpp \
+    filesystemmonitor.cpp \
     graph.cpp \
+    imageviewer.cpp \
     json_parser.cpp \
     longest_palindrome.cpp \
     main.cpp \
@@ -22,13 +28,20 @@ SOURCES += \
     merge_sort.cpp \
     mystring.cpp \
     producer_consumer.cpp \
-    singletondemo.cpp
+    singletondemo.cpp \
+    worker.cpp
 
 HEADERS += \
     ListNode.h \
     basic_file_system.h \
+    chatwindow.h \
+    contactsmanager.h \
     customwidget.h \
+    digitalclock.h \
+    dragdropwindow.h \
+    filesystemmonitor.h \
     graph.h \
+    imageviewer.h \
     invalid_argument_exception.h \
     json_parser.h \
     longest_palindrome.h \
@@ -40,7 +53,8 @@ HEADERS += \
     observer_pattern.h \
     producer_consumer.h \
     singletondemo.h \
-    threadsafequeue.h
+    threadsafequeue.h \
+    worker.h
 
 FORMS += \
     mainwindow.ui
@@ -56,3 +70,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES +=
+
+DISTFILES += \
+    main.qml

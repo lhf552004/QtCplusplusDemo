@@ -13,12 +13,26 @@
 #include "graph.h"
 #include "mystring.h"
 #include "json_parser.h"
+#include <QStyle>
+#include <QFileDialog>
+#include <QTextStream>
+#include "dragdropwindow.h"
+#include "filesystemmonitor.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // Set default icons using standard icons
+    ui->actionOpen->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton));
+    ui->actionSave->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton));
+    ui->actionQuit->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton));
+    ui->actionCopy->setIcon(QApplication::style()->standardIcon(QStyle::SP_FileDialogNewFolder));
+    ui->actionPaste->setIcon(QApplication::style()->standardIcon(QStyle::SP_FileDialogNewFolder));
+    ui->actionRedo->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowForward));
+    ui->actionUndo->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowBack));
+
 }
 
 MainWindow::~MainWindow()
@@ -195,5 +209,61 @@ void MainWindow::on_secondButton_clicked()
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
+}
+
+
+void MainWindow::on_testButton_clicked()
+{
+    ui->testButton->setText("Button clicked");
+
+    DragDropWindow* window = new DragDropWindow();
+    window->show();
+    window->raise();  // Bring it to the front
+    window->activateWindow();  // Give it focus
+}
+
+
+void MainWindow::on_actionOpen_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "Open File", "", "Text Files (*.txt);;All Files (*)");
+
+    if (fileName.isEmpty()) return;  // User cancelled the dialog
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "Error", "Cannot open file: " + file.errorString());
+        return;
+    }
+
+    QTextStream in(&file);
+    ui->textEdit->setText(in.readAll());
+    file.close();
+}
+
+
+void MainWindow::on_actionSave_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, "Save File", "", "Text Files (*.txt);;All Files (*)");
+
+    if (fileName.isEmpty()) return;  // User cancelled the dialog
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "Error", "Cannot save file: " + file.errorString());
+        return;
+    }
+
+    QTextStream out(&file);
+    out << ui->textEdit->toPlainText();
+    file.close();
+}
+
+
+void MainWindow::on_watcherButton_clicked()
+{
+    FileSystemMonitor* window = new FileSystemMonitor();
+    window->show();
+    window->raise();  // Bring it to the front
+    window->activateWindow();  // Give it focus
 }
 

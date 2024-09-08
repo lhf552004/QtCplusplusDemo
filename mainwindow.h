@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "worker.h"
+//#include <QThread>
+#include <QProgressBar>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,7 +24,17 @@ private slots:
 
     void on_secondButton_clicked();
 
+    void on_testButton_clicked();
+
+    void on_actionOpen_triggered();
+
+    void on_actionSave_triggered();
+
+    void on_watcherButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QThread *workerThread;  // Thread to run the worker
+    Worker *worker;  // Worker object to perform the task
 };
 #endif // MAINWINDOW_H
