@@ -19,7 +19,6 @@ SOURCES += \
     filesystemmonitor.cpp \
     graph.cpp \
     imageviewer.cpp \
-    json_parser.cpp \
     longest_palindrome.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -43,7 +42,6 @@ HEADERS += \
     graph.h \
     imageviewer.h \
     invalid_argument_exception.h \
-    json_parser.h \
     longest_palindrome.h \
     mainwindow.h \
     matrix_multiplication.h \

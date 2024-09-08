@@ -4,6 +4,12 @@
 docker build -t qtcreator-docker .
 ```
 
+Allow X11 Forwarding
+
+```
+xhost +local:docker
+```
+
 2. Run the Docker Container with GPU Access
 
 ```

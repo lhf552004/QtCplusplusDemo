@@ -12,7 +12,7 @@
 #include "merge_sort.h"
 #include "graph.h"
 #include "mystring.h"
-#include "json_parser.h"
+
 #include <QStyle>
 #include <QFileDialog>
 #include <QTextStream>
@@ -200,15 +200,7 @@ void MainWindow::on_myButton_clicked()
 
 void MainWindow::on_secondButton_clicked()
 {
-    try {
-        // Read JSON from file
-        json j = JsonParser::readJsonFromFile("data.json");
 
-        // Handle JSON data
-        JsonParser::handleJson(j);
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
 }
 
 
