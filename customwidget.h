@@ -6,11 +6,13 @@
 class CustomWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit CustomWidget(QWidget *parent = nullptr);
 
-signals:
-
+protected:
+    // Override the paintEvent method for custom painting
+    void paintEvent(QPaintEvent *event) override;
 };
 
 #endif // CUSTOMWIDGET_H

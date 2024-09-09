@@ -20,6 +20,9 @@
 #include "filesystemmonitor.h"
 #include "Base.h"
 #include <memory>
+#include <QtConcurrent>
+#include <QFuture>
+#include <QDebug>
 #include <QStandardItemModel>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -262,41 +265,13 @@ void MainWindow::on_watcherButton_clicked()
     window->activateWindow();  // Give it focus
 }
 
+int computeSum(int a, int b) {
+    return a + b;
+}
 
 void MainWindow::on_templateButton_clicked()
 {
     auto d = std::make_unique<Derived>();
     d->interface();  // Output: "Derived implementation"
-}
-
-
-void MainWindow::on_loadTableButton_clicked()
-{
-    // Create a standard item model with 5 rows and 3 columns
-    QStandardItemModel *model = new QStandardItemModel(5, 3);
-
-    // Set headers for the columns
-    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Name")));
-    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Age")));
-    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Occupation")));
-
-    // Populate data in the model
-    model->setItem(0, 0, new QStandardItem(QString("John Doe")));
-    model->setItem(0, 1, new QStandardItem(QString("30")));
-    model->setItem(0, 2, new QStandardItem(QString("Engineer")));
-
-    model->setItem(1, 0, new QStandardItem(QString("Jane Smith")));
-    model->setItem(1, 1, new QStandardItem(QString("25")));
-    model->setItem(1, 2, new QStandardItem(QString("Designer")));
-
-    model->setItem(2, 0, new QStandardItem(QString("Alice Johnson")));
-    model->setItem(2, 1, new QStandardItem(QString("27")));
-    model->setItem(2, 2, new QStandardItem(QString("Writer")));
-
-    // Set the model to the QTableView
-    ui->tableView->setModel(model);
-
-    // Show the QTableView
-    ui->tableView->show();
 }
 
