@@ -5,7 +5,8 @@
 #include <QTranslator>
 #include "digitalclock.h"
 #include "imageviewer.h"
-#include "customwidget.h"#include <QPluginLoader>
+#include "customwidget.h"
+#include <QPluginLoader>
 #include <QDebug>
 #include "plugininterface.h"
 
