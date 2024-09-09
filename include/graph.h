@@ -17,6 +17,10 @@ public:
 
     // Find the shortest path using BFS
     void findShortestPath(int start, int end);
+    // Public getter to access the adjacency list for testing
+    const std::unordered_map<int, std::vector<int>>& getAdjList() const {
+        return adjList;
+    }
 };
 
 #endif // GRAPH_H
