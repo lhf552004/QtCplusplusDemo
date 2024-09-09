@@ -5,7 +5,7 @@
 #include <QTranslator>
 #include "digitalclock.h"
 #include "imageviewer.h"
-
+#include "customwidget.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,7 +22,11 @@ int main(int argc, char *argv[])
     //    }
 
     MainWindow w;
-    //        w.resize(600, 400);
+
+//    CustomWidget *customWidget = new CustomWidget(&w); // Create an instance of the custom widget
+//    w.setCentralWidget(customWidget); // Set the custom widget as the central widget of the main window
+//    w.setWindowTitle("Custom Painting Example");
+//            w.resize(600, 400);
     w.show();
     //    ImageViewer viewer;
     //       viewer.show();

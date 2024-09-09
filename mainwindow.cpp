@@ -20,6 +20,9 @@
 #include "filesystemmonitor.h"
 #include "Base.h"
 #include <memory>
+#include <QtConcurrent>
+#include <QFuture>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -261,10 +264,27 @@ void MainWindow::on_watcherButton_clicked()
     window->activateWindow();  // Give it focus
 }
 
+int computeSum(int a, int b) {
+    return a + b;
+}
 
 void MainWindow::on_templateButton_clicked()
 {
     auto d = std::make_unique<Derived>();
     d->interface();  // Output: "Derived implementation"
+}
+
+
+void MainWindow::on_concurrentButton_clicked()
+{
+    // Run computeSum asynchronously
+        QFuture<int> future = QtConcurrent::run(computeSum, 5, 10);
+
+        // Wait for the result
+        future.waitForFinished();
+
+        // Retrieve the result
+        int result = future.result();
+        qDebug() << "Sum is:" << result;
 }
 
