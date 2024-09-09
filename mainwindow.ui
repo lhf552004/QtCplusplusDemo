@@ -89,20 +89,13 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>70</x>
       <y>360</y>
       <width>341</width>
       <height>181</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="0">
-      <widget class="QPushButton" name="templateButton">
-       <property name="text">
-        <string>Template</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0">
       <widget class="QPushButton" name="concurrentButton">
        <property name="text">
@@ -117,15 +110,22 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="templateButton">
+       <property name="text">
+        <string>Template</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>340</y>
-      <width>381</width>
-      <height>221</height>
+      <x>420</x>
+      <y>250</y>
+      <width>311</width>
+      <height>231</height>
      </rect>
     </property>
    </widget>
@@ -149,7 +149,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
