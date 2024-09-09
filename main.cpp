@@ -5,12 +5,29 @@
 #include <QTranslator>
 #include "digitalclock.h"
 #include "imageviewer.h"
-
+#include <QPluginLoader>
+#include <QDebug>
+#include "plugininterface.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    // Load the plugin dynamically
+    QPluginLoader loader("myplugin");  // The name of the plugin file without the extension
+    QObject *pluginInstance = loader.instance();
 
+    if (pluginInstance) {
+        // Cast the plugin to the PluginInterface
+        PluginInterface *plugin = qobject_cast<PluginInterface *>(pluginInstance);
+        if (plugin) {
+            qDebug() << "Loaded plugin:" << plugin->pluginName();
+            plugin->doSomething();  // Call the plugin's functionality
+        } else {
+            qDebug() << "Failed to cast plugin to PluginInterface.";
+        }
+    } else {
+        qDebug() << "Failed to load plugin:" << loader.errorString();
+    }
     //    QTranslator translator;
     //    const QStringList uiLanguages = QLocale::system().uiLanguages();
     //    for (const QString &locale : uiLanguages) {

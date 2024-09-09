@@ -25,6 +25,7 @@ SOURCES += \
     matrix_multiplication.cpp \
     memory_pool_allocator.cpp \
     merge_sort.cpp \
+    myplugin.cpp \
     mystring.cpp \
     producer_consumer.cpp \
     singletondemo.cpp \
@@ -48,8 +49,10 @@ HEADERS += \
     matrix_multiplication.h \
     memory_pool_allocator.h \
     merge_sort.h \
+    myplugin.h \
     mystring.h \
     observer_pattern.h \
+    plugininterface.h \
     producer_consumer.h \
     singletondemo.h \
     threadsafequeue.h \
@@ -68,7 +71,8 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES +=
+RESOURCES += \
+    resource.qrc
 
 DISTFILES += \
     main.qml
