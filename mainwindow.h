@@ -34,8 +34,6 @@ private slots:
 
     void on_templateButton_clicked();
 
-    void on_concurrentButton_clicked();
-
 private:
     Ui::MainWindow *ui;
     QThread *workerThread;  // Thread to run the worker

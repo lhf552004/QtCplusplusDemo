@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y software-properties-common && \
     add-apt-repository multiverse && \
     apt-get update
 
-# Install necessary packages including Qt5, QML, and xcb dependencies
+# Install necessary packages including Qt Quick modules and xcb dependencies
 RUN apt-get update && apt-get install -y \
     qtcreator \
     qtbase5-dev \
@@ -42,5 +42,15 @@ RUN apt-get update && apt-get install -y \
     libxkbcommon-x11-0 \
     x11-apps \
     libboost-all-dev \
-    nlohmann-json3-dev && \
+    nlohmann-json3-dev \
+    qml-module-qtquick2 \
+    qml-module-qtquick-controls \
+    qml-module-qtquick-controls2 \
+    qml-module-qtqml \
+    qml-module-qt-labs-folderlistmodel \
+    qml-module-qt-labs-settings \
+    qml-module-qtgraphicaleffects \
+    qml-module-qtquick-layouts \
+    qml-module-qtquick-window2 \
+    qmlscene && \
     rm -rf /var/lib/apt/lists/*
