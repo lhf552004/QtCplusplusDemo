@@ -19,12 +19,6 @@ RUN apt-get update && apt-get install -y \
     qtbase5-dev \
     qt5-qmake \
     qttools5-dev-tools \
-    qmlscene \
-    qml-module-qtquick-controls2 \
-    qml-module-qtquick2 \
-    qml-module-qtquick-layouts \
-    qml-module-qtgraphicaleffects \
-    qml-module-qtqml-models2 \
     build-essential \
     libgl1-mesa-glx \
     libx11-xcb1 \
