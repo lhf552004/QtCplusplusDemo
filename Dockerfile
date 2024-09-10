@@ -13,12 +13,18 @@ RUN apt-get update && apt-get install -y software-properties-common && \
     add-apt-repository multiverse && \
     apt-get update
 
-# Install necessary packages including xcb dependencies
+# Install necessary packages including Qt5, QML, and xcb dependencies
 RUN apt-get update && apt-get install -y \
     qtcreator \
     qtbase5-dev \
     qt5-qmake \
     qttools5-dev-tools \
+    qmlscene \
+    qml-module-qtquick-controls2 \
+    qml-module-qtquick2 \
+    qml-module-qtquick-layouts \
+    qml-module-qtgraphicaleffects \
+    qml-module-qtqml-models2 \
     build-essential \
     libgl1-mesa-glx \
     libx11-xcb1 \
