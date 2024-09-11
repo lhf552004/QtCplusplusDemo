@@ -12,6 +12,7 @@ SOURCES += \
     ListNode.cpp \
     basic_file_system.cpp \
     chatwindow.cpp \
+    complex.cpp \
     contactsmanager.cpp \
     customwidget.cpp \
     digitalclock.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
     myplugin.cpp \
     mystring.cpp \
     producer_consumer.cpp \
+    rectangle.cpp \
     singletondemo.cpp \
     worker.cpp
 
@@ -36,6 +38,7 @@ HEADERS += \
     ListNode.h \
     basic_file_system.h \
     chatwindow.h \
+    complex.h \
     contactsmanager.h \
     customwidget.h \
     digitalclock.h \
@@ -54,6 +57,7 @@ HEADERS += \
     observer_pattern.h \
     plugininterface.h \
     producer_consumer.h \
+    rectangle.h \
     singletondemo.h \
     threadsafequeue.h \
     worker.h

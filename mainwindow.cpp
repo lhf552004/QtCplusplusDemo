@@ -269,9 +269,64 @@ int computeSum(int a, int b) {
     return a + b;
 }
 
+std::string reverseString(const std::string& input) {
+
+    std::string reversed = input; // Create a copy of the input string
+    int start = 0;
+    int len = reversed.length();
+    char temp;
+    for(start =0; start< len/2; start++ ) {
+        temp = reversed[start];
+        reversed[start] = reversed[len - start - 1];
+        reversed[len - start - 1] = temp;
+    }
+
+    return reversed;
+}
+
+int findMaxElement(const std::vector<int>& numbers) {
+    int maxium = INT_MIN;
+    for(int i =0; i< numbers.size(); i++) {
+        int item = numbers.at(i);
+        if(maxium < item) {
+            maxium = item;
+        }
+    }
+    return maxium;
+}
+
+bool isPrime(int number) {
+    if (number <= 1) {
+        return false;
+    }
+
+    for(int i = 2; i <= std::sqrt(number); i++) {
+        if(number % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void MainWindow::on_templateButton_clicked()
 {
     auto d = std::make_unique<Derived>();
     d->interface();  // Output: "Derived implementation"
+
+    std::string input = "This is a string";
+    std::string output = reverseString(input);
+
+    std::cout << input << std::endl;
+    std::cout << output << std::endl;
+
+    std::vector<int> numbers = {3, 5, 2, 9, 7, 1, 6};
+    int theMax = findMaxElement(numbers);
+    std::cout << "Max number in the vector: " << theMax << std::endl;
+
+    int theNumber = 211;
+    std::cout << "Is number: " << theNumber << " a prime number: "
+                 << (isPrime(theNumber) ? "Yes" : "No") << std::endl;
+
+
 }
 
