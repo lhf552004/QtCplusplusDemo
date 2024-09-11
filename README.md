@@ -13,14 +13,7 @@ xhost +local:docker
 2. Run the Docker Container with GPU Access
 
 ```
-docker run -it --rm \
-    --gpus all \
-    --env="DISPLAY" \
-    --env="QT_X11_NO_MITSHM=1" \
-    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --device /dev/dri \
-    --mount src=/path/to/QtCplusplusDemo,target=/build,type=bind \
-    qtcreator-docker qtcreator /build
+sudo docker run -it --rm     --env="DISPLAY=$DISPLAY"     --env="QT_X11_NO_MITSHM=1"     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"     --device /dev/dri     --mount src=/home/yawen/Dev/QtCplusplusDemo,target=/build,type=bind     qtcreator-docker qtcreator /build
 ```
 
 ```
