@@ -25,23 +25,23 @@ void Complex::setImaginary(double newImaginary)
     imaginary = newImaginary;
 }
 
-Complex Complex::operator+(const Complex &other)
+Complex Complex::operator+(const Complex &other) const
 {
     Complex result(this->real + other.real, this->imaginary + other.imaginary);
     return result;
 }
 
-Complex Complex::operator-(const Complex &other)
+Complex Complex::operator-(const Complex &other) const
 {
 
 }
 
-Complex Complex::operator*(const Complex &other)
+Complex Complex::operator*(const Complex &other) const
 {
 
 }
 
-Complex Complex::operator==(const Complex &other)
+Complex Complex::operator==(const Complex &other) const
 {
 
 }

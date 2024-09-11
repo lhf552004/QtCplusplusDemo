@@ -24,6 +24,9 @@
 #include <QFuture>
 #include <QDebug>
 #include <QStandardItemModel>
+#include "simplesmartpointer.h"
+#include "utils.h"
+#include "stack.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -307,26 +310,120 @@ bool isPrime(int number) {
     }
     return true;
 }
+// dynamically allocates an integer array of the given size using pointers.
+void allocateArray(int* arr, int size) {
+    arr = new int[size];
+}
+
+// Function to free the dynamically allocated integer array
+void freeArray(int* arr) {
+    delete[] arr; // Free the dynamically allocated memory
+}
+
+std::mutex mtx; // Mutex to protect shared resources
+std::condition_variable cv; // Condition variable for synchronization
+bool printEven = true; // Flag to control which thread prints
+
+void printEvenNumbers() {
+    for (int i = 0; i <= 100; i += 2) {
+        std::unique_lock<std::mutex> lock(mtx); // Lock the mutex
+        cv.wait(lock, [] { return printEven; }); // Wait until it's time to print even numbers
+
+        std::cout << i << " "; // Print even number
+
+        printEven = false; // Set flag to allow odd number printing
+        cv.notify_one(); // Notify the other thread
+    }
+}
+
+void printOddNumbers() {
+    for (int i = 1; i < 100; i += 2) {
+        std::unique_lock<std::mutex> lock(mtx); // Lock the mutex
+        cv.wait(lock, [] { return !printEven; }); // Wait until it's time to print odd numbers
+
+        std::cout << i << " "; // Print odd number
+
+        printEven = true; // Set flag to allow even number printing
+        cv.notify_one(); // Notify the other thread
+    }
+}
+
+template<typename T>
+T maxValue(T val1, T val2) {
+    return val1 > val2? val1: val2;
+}
+
+void readFiles(std::string file1, std::string file2) {
+
+}
 
 void MainWindow::on_templateButton_clicked()
 {
-    auto d = std::make_unique<Derived>();
-    d->interface();  // Output: "Derived implementation"
+    //    auto d = std::make_unique<Derived>();
+    //    d->interface();  // Output: "Derived implementation"
 
-    std::string input = "This is a string";
-    std::string output = reverseString(input);
+    //    std::string input = "This is a string";
+    //    std::string output = reverseString(input);
 
-    std::cout << input << std::endl;
-    std::cout << output << std::endl;
+    //    std::cout << input << std::endl;
+    //    std::cout << output << std::endl;
 
-    std::vector<int> numbers = {3, 5, 2, 9, 7, 1, 6};
-    int theMax = findMaxElement(numbers);
-    std::cout << "Max number in the vector: " << theMax << std::endl;
+    //    std::vector<int> numbers = {3, 5, 2, 9, 7, 1, 6};
+    //    int theMax = findMaxElement(numbers);
+    //    std::cout << "Max number in the vector: " << theMax << std::endl;
 
-    int theNumber = 211;
-    std::cout << "Is number: " << theNumber << " a prime number: "
-                 << (isPrime(theNumber) ? "Yes" : "No") << std::endl;
+    //    int theNumber = 211;
+    //    std::cout << "Is number: " << theNumber << " a prime number: "
+    //              << (isPrime(theNumber) ? "Yes" : "No") << std::endl;
+
+    //    int* myArray = nullptr;
+    //    int size = 5;
+
+    //    allocateArray(myArray, size);
+    //    for (int i = 0; i < size; ++i) {
+    //        myArray[i] = i * 2; // Assign values
+    //    }
+
+    //    std::cout << "Array elements: ";
+    //    for (int i = 0; i < size; ++i) {
+    //        std::cout << myArray[i] << " ";
+    //    }
+    //    std::cout << std::endl;
+    //    freeArray(myArray);
 
 
+    //    // Create a SimpleSmartPointer to manage a dynamically allocated integer
+    //    SimpleSmartPointer<int> ptr(new int(42));
+    //    std::cout << "Value: " << *ptr << std::endl; // Output: 42
+
+    //    // Transfer ownership using move semantics
+    //    SimpleSmartPointer<int> ptr2 = std::move(ptr);
+    //    std::cout << "Value after move: " << *ptr2 << std::endl; // Output: 42
+
+    //    // Use reset to manage a new resource
+    //    ptr2.reset(new int(100));
+    //    std::cout << "Value after reset: " << *ptr2 << std::endl; // Output: 100
+
+    // Launch two threads
+    //    std::thread evenThread(printEvenNumbers);
+    //    std::thread oddThread(printOddNumbers);
+
+    //    // Wait for both threads to finish
+    //    evenThread.join();
+    //    oddThread.join();
+
+    //    std::cout << std::endl; // Print newline at the end
+    Utils util;
+    util.readFiles("/home/yawen/dev/qt/Myproject/input.txt");
+
+    Stack stack;
+    stack.push(2);
+    stack.push(1);
+    stack.push(3);
+    int last = stack.top();
+    std::cout << "Last element " << last << std::endl;
+    while(!stack.isEmpty()) {
+        std::cout << "Last element " << stack.pop() << std::endl;
+    }
 }
 

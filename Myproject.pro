@@ -23,6 +23,7 @@ SOURCES += \
     longest_palindrome.cpp \
     main.cpp \
     mainwindow.cpp \
+    matrix.cpp \
     matrix_multiplication.cpp \
     memory_pool_allocator.cpp \
     merge_sort.cpp \
@@ -31,6 +32,8 @@ SOURCES += \
     producer_consumer.cpp \
     rectangle.cpp \
     singletondemo.cpp \
+    stack.cpp \
+    utils.cpp \
     worker.cpp
 
 HEADERS += \
@@ -49,6 +52,7 @@ HEADERS += \
     invalid_argument_exception.h \
     longest_palindrome.h \
     mainwindow.h \
+    matrix.h \
     matrix_multiplication.h \
     memory_pool_allocator.h \
     merge_sort.h \
@@ -58,8 +62,11 @@ HEADERS += \
     plugininterface.h \
     producer_consumer.h \
     rectangle.h \
+    simplesmartpointer.h \
     singletondemo.h \
+    stack.h \
     threadsafequeue.h \
+    utils.h \
     worker.h
 
 FORMS += \
