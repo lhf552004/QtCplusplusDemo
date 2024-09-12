@@ -3,7 +3,9 @@
 #include <map>
 #include <algorithm>
 #include <cctype>
-
+#include <vector>
+#include <sstream>
+#include <list>
 
 Utils::Utils()
 {
@@ -57,4 +59,50 @@ void Utils::readFiles(std::string file1)
 double Utils::celsiusToFahrenheit(double celsius)
 {
     return celsius* (9/5) +32;
+}
+
+bool Utils::isPalinedrome(const std::string &s)
+{
+    int left = 0;
+    int right = s.length() -1;
+    while(left < right) {
+        if(s[left] != s[right]) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
+}
+
+
+std::vector<std::string> splitStringBySpace(const std::string &str) {
+    std::istringstream iss(str);  // Initialize a string stream with the input string
+    std::vector<std::string> result; // Vector to store the split parts
+    std::string word;
+
+    while (iss >> word) {  // Read each word separated by spaces
+        result.push_back(word);  // Add the word to the result vector
+    }
+
+    return result;
+}
+
+std::string Utils::reverseWords(const std::string &s)
+{
+    std::vector<std::string> words = splitStringBySpace(s);
+    std::reverse(words.begin(), words.end());
+    std::ostringstream reversedStream;
+    for (size_t i = 0; i < words.size(); ++i) {
+        if (i > 0) {
+            reversedStream << " "; // Add a space between words
+        }
+        reversedStream << words[i];
+    }
+    return reversedStream.str();
+}
+
+void Utils::mirror(TreeNode *root)
+{
+
 }
