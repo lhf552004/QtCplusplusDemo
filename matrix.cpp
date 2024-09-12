@@ -1,12 +1,7 @@
 #include "matrix.h"
 
 
-Matrix Matrix::add(const Matrix &other)
-{
-
-}
-
-Matrix &Matrix::operator+(const Matrix &other) const
+Matrix Matrix::operator+(const Matrix &other) const
 {
     Matrix result;
 

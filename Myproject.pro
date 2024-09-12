@@ -39,8 +39,10 @@ SOURCES += \
 HEADERS += \
     Base.h \
     ListNode.h \
+    Queen.h \
     basic_file_system.h \
     chatwindow.h \
+    commonseq.h \
     complex.h \
     contactsmanager.h \
     customwidget.h \
@@ -64,8 +66,10 @@ HEADERS += \
     rectangle.h \
     simplesmartpointer.h \
     singletondemo.h \
+    solveNQueens.h \
     stack.h \
     threadsafequeue.h \
+    treenode.h \
     utils.h \
     worker.h
 

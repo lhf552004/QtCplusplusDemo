@@ -357,6 +357,7 @@ void readFiles(std::string file1, std::string file2) {
 
 }
 
+
 void MainWindow::on_templateButton_clicked()
 {
     //    auto d = std::make_unique<Derived>();
@@ -425,5 +426,14 @@ void MainWindow::on_templateButton_clicked()
     while(!stack.isEmpty()) {
         std::cout << "Last element " << stack.pop() << std::endl;
     }
+
+    std::string palinedrone_str1 = "appa";
+    std::string palinedrone_str2 = "abpaaba";
+    std::cout << "is palinedrome " << util.isPalinedrome(palinedrone_str1) << std::endl;
+    std::cout << "is palinedrome " << util.isPalinedrome(palinedrone_str2) << std::endl;
+    std::string sentence = "Hello world this is C++";
+    auto reversed = util.reverseWords(sentence);
+    std::cout << "Original: " << sentence << std::endl;
+    std::cout << "Reversed: " << reversed << std::endl;
 }
 
