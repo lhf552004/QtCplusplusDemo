@@ -21,6 +21,7 @@ SOURCES += \
     graph.cpp \
     imageviewer.cpp \
     longest_palindrome.cpp \
+    lru.cpp \
     main.cpp \
     mainwindow.cpp \
     matrix.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
     merge_sort.cpp \
     myplugin.cpp \
     mystring.cpp \
+    node.cpp \
     producer_consumer.cpp \
     rectangle.cpp \
     singletondemo.cpp \
@@ -51,6 +53,7 @@ HEADERS += \
     imageviewer.h \
     invalid_argument_exception.h \
     longest_palindrome.h \
+    lru.h \
     mainwindow.h \
     matrix.h \
     matrix_multiplication.h \
@@ -58,6 +61,7 @@ HEADERS += \
     merge_sort.h \
     myplugin.h \
     mystring.h \
+    node.h \
     observer_pattern.h \
     plugininterface.h \
     producer_consumer.h \

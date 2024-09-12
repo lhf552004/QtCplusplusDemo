@@ -27,6 +27,7 @@
 #include "simplesmartpointer.h"
 #include "utils.h"
 #include "stack.h"
+#include "lru.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -425,5 +426,14 @@ void MainWindow::on_templateButton_clicked()
     while(!stack.isEmpty()) {
         std::cout << "Last element " << stack.pop() << std::endl;
     }
+
+    LRU lru(3);
+    lru.put(3, 34);
+    lru.put(1, 22);
+    lru.put(2, 26);
+    std::cout << "The element wit key 1 " << lru.get(1) << std::endl;
+
+    lru.put(4, 11);
+    std::cout << "Get key 3: " << lru.get(3) << std::endl; // Returns -1 (not found)
 }
 
