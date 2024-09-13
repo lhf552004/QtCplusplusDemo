@@ -28,6 +28,7 @@
 #include "utils.h"
 #include "stack.h"
 #include "lru.h"
+#include "longest_palindrome.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -585,21 +586,26 @@ void MainWindow::on_templateButton_clicked()
 
 
     // Initialize l1 and l2
-    std::vector<int> values1 = {9, 9, 9, 9, 9, 9, 9};
-    std::vector<int> values2 = {9, 9, 9, 9};
+//    std::vector<int> values1 = {9, 9, 9, 9, 9, 9, 9};
+//    std::vector<int> values2 = {9, 9, 9, 9};
 
-    ListNode* l1 = createList(values1);
-    ListNode* l2 = createList(values2);
+//    ListNode* l1 = createList(values1);
+//    ListNode* l2 = createList(values2);
 
-    ListNode* res = addTwoNumbers(l1, l2);
-    while(res != nullptr) {
-        std::cout << "Add two number" << res->val << std::endl;
-        res = res->next;
-    }
-    int temp = 1 / 10;
-    std::cout << temp << std::endl;
-    delete l1;
-    delete l2;
-    delete res;
+//    ListNode* res = addTwoNumbers(l1, l2);
+//    while(res != nullptr) {
+//        std::cout << "Add two number" << res->val << std::endl;
+//        res = res->next;
+//    }
+//    int temp = 1 / 10;
+//    std::cout << temp << std::endl;
+//    delete l1;
+//    delete l2;
+//    delete res;
+    auto s1 = "babad";
+    auto s2 = "cbbd";
+    std::cout << longest_palindrome(s1) << std::endl;
+
+    std::cout << longest_palindrome(s2) << std::endl;
 }
 
