@@ -6,6 +6,7 @@
 #include <vector>
 #include <sstream>
 #include <list>
+#include <functional>
 
 Utils::Utils()
 {
@@ -105,4 +106,30 @@ std::string Utils::reverseWords(const std::string &s)
 void Utils::mirror(TreeNode *root)
 {
 
+}
+
+std::vector<std::string> Utils::generatePermutations(const std::string &s)
+{
+   std::vector<std::string> result;
+   std::string current = s;
+   std::sort(current.begin(), current.end());
+   std::vector<bool> used(s.size(), false);
+   std::string temp;
+   std::function<void()> backtrack = [&]() {
+        if(temp.size() == s.size()) {
+            result.push_back(temp);
+            return;
+        }
+        for(int i =0; i < s.size(); ++i) {
+            if(used[i]) continue;
+            if(i > 0 && current[i] == current[i-1] && !used[i-1]) continue;
+            used[i] = true;
+            temp.push_back(current[i]);
+            backtrack();
+            temp.pop_back();
+            used[i] = false;
+        }
+   };
+   backtrack();
+   return result;
 }

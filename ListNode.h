@@ -5,8 +5,10 @@
 // Definition of the ListNode struct
 struct ListNode {
     int value;
+    int val;
     ListNode* next;
-    ListNode(int x) : value(x), next(nullptr) {}
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
 };
 
 // Function declaration for reversing the linked list
