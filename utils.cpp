@@ -6,6 +6,7 @@
 #include <vector>
 #include <sstream>
 #include <list>
+#include <queue>
 
 Utils::Utils()
 {
@@ -106,3 +107,85 @@ void Utils::mirror(TreeNode *root)
 {
 
 }
+
+std::string Utils::serialize(TreeNode *root)
+{
+
+    if(root == nullptr) {
+       return "#";
+    }
+    std::queue<TreeNode*> queue;
+    std::string result;
+    queue.push(root);
+    while(!queue.empty()) {
+        TreeNode* node = queue.front();
+        queue.pop();
+        if(node!=nullptr) {
+             result += std::to_string(node->key) + ",";
+             queue.push(node->left);
+             queue.push(node->right);
+        }else {
+            result += "#,";
+        }
+    }
+    // Remove the trailing comma
+    if (!result.empty()) {
+        result.pop_back();
+    }
+    return result;
+}
+
+TreeNode *Utils::deserialize(std::string data)
+{
+    if(data == "#") return nullptr;
+    std::stringstream ss(data);
+    std::string item;
+    std::getline(ss, item, ',');
+    TreeNode* root = new TreeNode(std::stoi(item));
+    std::queue<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()) {
+        TreeNode* node = q.front();
+        q.pop();
+        // Left
+        if(std::getline(ss, item, ',')){
+            if(item != "null") {
+                node->left = new TreeNode(std::stoi(item));
+                q.push(node->left);
+            }
+        }
+
+        if(std::getline(ss, item, ',')){
+            if(item != "null") {
+                node->right = new TreeNode(std::stoi(item));
+                q.push(node->right);
+            }
+        }
+    }
+    return root;
+}
+
+void Utils::printTree(TreeNode *root)
+{
+    if(!root) return;
+    std::queue<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()) {
+        TreeNode* node = q.front();
+        q.pop();
+        if(node) {
+            std::cout << node->key << " ";
+            q.push(root->left);
+            q.push(root->right);
+        }else {
+            std::cout << "null";
+        }
+    }
+    std::cout << std::endl;
+}
+
+std::vector<std::string> Utils::generatePermutations(const std::string &s)
+{
+
+}
+

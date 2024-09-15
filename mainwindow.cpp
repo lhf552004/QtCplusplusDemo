@@ -447,3 +447,20 @@ void MainWindow::on_templateButton_clicked()
     std::cout << "Reversed: " << reversed << std::endl;
 }
 
+
+void MainWindow::on_treeButton_clicked()
+{
+    Utils util;
+    TreeNode* root = new TreeNode(1);
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(3);
+    root->right->left = new TreeNode(4);
+    root->right->right = new TreeNode(5);
+    std::string serializedTree = util.serialize(root);
+    std::cout << "Serialized tree: " << serializedTree << std::endl;
+
+    TreeNode* deserializedRoot = util.deserialize(serializedTree);
+    std::cout << "Deserialized tree (level-order): ";
+    util.printTree(deserializedRoot);
+}
+
