@@ -36,7 +36,8 @@ SOURCES += \
     singletondemo.cpp \
     stack.cpp \
     utils.cpp \
-    worker.cpp
+    worker.cpp \
+    zigzag.cpp
 
 HEADERS += \
     Base.h \
@@ -75,7 +76,8 @@ HEADERS += \
     threadsafequeue.h \
     treenode.h \
     utils.h \
-    worker.h
+    worker.h \
+    zigzag.h
 
 FORMS += \
     mainwindow.ui

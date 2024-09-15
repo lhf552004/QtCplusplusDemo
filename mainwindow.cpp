@@ -28,6 +28,7 @@
 #include "utils.h"
 #include "stack.h"
 #include "lru.h"
+#include "longest_palindrome.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -358,7 +359,132 @@ void readFiles(std::string file1, std::string file2) {
 
 }
 
+int lengthOfLongestSubstring2(std::string s) {
+    std::unordered_map<char, int> charIndexMap;
+    int maxLength = 0, start = 0;
 
+    for (int i = 0; i < s.length(); i++) {
+        if (charIndexMap.find(s[i]) != charIndexMap.end()) {
+            start = std::max(start, charIndexMap[s[i]] + 1);
+        }
+        charIndexMap[s[i]] = i;
+        maxLength = std::max(maxLength, i - start + 1);
+    }
+
+    return maxLength;
+}
+
+int lengthOfLongestSubstring(std::string s) {
+    int len= s.length();
+    if(len == 0) return 0;
+    int max_len = 1;
+    std::unordered_map<char, int> map;
+    int k = 0;
+    for(int i = 0; i < len; i++) {
+        std::cout << "i: " << i << std::endl;
+        if(map.find(s[i]) == map.end()) {
+            map[s[i]] = i;
+//            std::cout <<"i: "<< i << ", " << s[i] <<" is not in the map, added." << std::endl;
+        }
+        if(k <= i) k = i+1;
+        while(k < len) {
+            std::cout << "k: " << k << std::endl;
+            if(map.find(s[k]) == map.end()) {
+                map[s[k]] = k;
+                max_len = std::max(k-i+1, max_len);
+//                std::cout <<"k: "<< k << ", " << s[k] <<" is not in the map, added." << std::endl;
+            }else {
+                map.erase(s[k]);
+                break;
+            }
+            k++;
+        }
+      \
+    }
+    return max_len;
+}
+ListNode* createList(const std::vector<int>& values) {
+    if (values.empty()) return nullptr; // Handle empty input
+
+    ListNode* head = new ListNode(values[0]); // Initialize the head of the list
+    ListNode* current = head;
+
+    for (size_t i = 1; i < values.size(); ++i) {
+        current->next = new ListNode(values[i]); // Create new node and link it
+        current = current->next; // Move to the next node
+    }
+
+    return head;
+}
+double findMedianSortedArrays(std::vector<int>& nums1, std::vector<int>& nums2) {
+        int len1 = nums1.size();
+        int len2 = nums2.size();
+        int i=0, j = 0;
+        std::vector<int> res;
+        while(i < len1 && j < len2) {
+            int cur;
+            if(nums1[i] < nums2[j]) {
+                cur = nums1[i];
+
+                i++;
+            }else {
+                cur = nums2[j];
+                j++;
+            }
+            res.push_back(cur);
+        }
+
+        for(;i< len1;i++) {
+             res.push_back(nums1[i]);
+        }
+
+        for(;j< len2;j++) {
+             res.push_back(nums2[j]);
+        }
+
+        int len = res.size();
+        int middle_idx = len / 2;
+        if(len % 2 == 0) {
+            return (static_cast<double>(res[middle_idx - 1] + res[middle_idx]))/2;
+        }else {
+            return res[middle_idx];
+        }
+    }
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    if(l1 == nullptr) return l2;
+    if(l2 == nullptr) return l1;
+    ListNode* result = new ListNode();
+    ListNode* ret = result;
+    int overflow = 0;
+    while(l1 != nullptr || l2 != nullptr) {
+
+        int val1 = 0;
+        int val2 = 0;
+        if(l1 != nullptr) val1 = l1->val;
+        if(l2 != nullptr) val2 = l2->val;
+        int sum = val1 + val2 + overflow;
+        int res_val = sum % 10;
+        overflow = sum / 10;
+        result->val = res_val;
+        result->next = new ListNode(); // Create the next node
+        result = result->next; // Move to the next node
+        l1 = l1->next;
+        l2 = l2->next;
+    }
+    // Handle any remaining overflow
+    if (overflow > 0) {
+         result->val = overflow; // Set the last node value if there is an overflow
+    }
+    return ret;
+}
+
+void deleteList(ListNode* head) {
+    while (head != nullptr) {
+        ListNode* temp = head;
+        head = head->next;
+        delete temp; // Delete the current node
+    }
+}
 void MainWindow::on_templateButton_clicked()
 {
     //    auto d = std::make_unique<Derived>();
@@ -445,6 +571,42 @@ void MainWindow::on_templateButton_clicked()
     auto reversed = util.reverseWords(sentence);
     std::cout << "Original: " << sentence << std::endl;
     std::cout << "Reversed: " << reversed << std::endl;
+
+    std::string aa = "qaws123";
+    auto it = aa.begin();
+    std::advance(it, 2);
+    std::sort(it, aa.end());
+    std::cout << "sorted string: " << aa << std::endl;
+    std::string test1 = "abcabcbb";
+    int length1 = lengthOfLongestSubstring2(test1);
+    std::cout << length1 << std::endl;
+    std::string test2 = "bbbbb";
+    int length2 = lengthOfLongestSubstring2(test1);
+    std::cout << "length2" << length2 << std::endl;
+
+
+    // Initialize l1 and l2
+//    std::vector<int> values1 = {9, 9, 9, 9, 9, 9, 9};
+//    std::vector<int> values2 = {9, 9, 9, 9};
+
+//    ListNode* l1 = createList(values1);
+//    ListNode* l2 = createList(values2);
+
+//    ListNode* res = addTwoNumbers(l1, l2);
+//    while(res != nullptr) {
+//        std::cout << "Add two number" << res->val << std::endl;
+//        res = res->next;
+//    }
+//    int temp = 1 / 10;
+//    std::cout << temp << std::endl;
+//    delete l1;
+//    delete l2;
+//    delete res;
+    auto s1 = "babad";
+    auto s2 = "cbbd";
+    std::cout << longest_palindrome(s1) << std::endl;
+
+    std::cout << longest_palindrome(s2) << std::endl;
 }
 
 
