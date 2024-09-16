@@ -185,11 +185,6 @@ void Utils::printTree(TreeNode *root)
     std::cout << std::endl;
 }
 
-std::vector<std::string> Utils::generatePermutations(const std::string &s)
-{
-
-}
-
 
 std::vector<std::string> Utils::generatePermutations(const std::string &s)
 {

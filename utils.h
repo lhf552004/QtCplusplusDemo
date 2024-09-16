@@ -22,7 +22,6 @@ public:
     std::string serialize(TreeNode* root);
     TreeNode* deserialize(std::string result);
     void printTree(TreeNode* root);
-    std::vector<std::string> generatePermutations(const std::string& s);
 };
 
 #endif // UTILS_H

@@ -29,6 +29,7 @@
 #include "stack.h"
 #include "lru.h"
 #include "longest_palindrome.h"
+#include "zigzag.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -384,7 +385,7 @@ int lengthOfLongestSubstring(std::string s) {
         std::cout << "i: " << i << std::endl;
         if(map.find(s[i]) == map.end()) {
             map[s[i]] = i;
-//            std::cout <<"i: "<< i << ", " << s[i] <<" is not in the map, added." << std::endl;
+            //            std::cout <<"i: "<< i << ", " << s[i] <<" is not in the map, added." << std::endl;
         }
         if(k <= i) k = i+1;
         while(k < len) {
@@ -392,14 +393,14 @@ int lengthOfLongestSubstring(std::string s) {
             if(map.find(s[k]) == map.end()) {
                 map[s[k]] = k;
                 max_len = std::max(k-i+1, max_len);
-//                std::cout <<"k: "<< k << ", " << s[k] <<" is not in the map, added." << std::endl;
+                //                std::cout <<"k: "<< k << ", " << s[k] <<" is not in the map, added." << std::endl;
             }else {
                 map.erase(s[k]);
                 break;
             }
             k++;
         }
-      \
+        \
     }
     return max_len;
 }
@@ -417,39 +418,39 @@ ListNode* createList(const std::vector<int>& values) {
     return head;
 }
 double findMedianSortedArrays(std::vector<int>& nums1, std::vector<int>& nums2) {
-        int len1 = nums1.size();
-        int len2 = nums2.size();
-        int i=0, j = 0;
-        std::vector<int> res;
-        while(i < len1 && j < len2) {
-            int cur;
-            if(nums1[i] < nums2[j]) {
-                cur = nums1[i];
+    int len1 = nums1.size();
+    int len2 = nums2.size();
+    int i=0, j = 0;
+    std::vector<int> res;
+    while(i < len1 && j < len2) {
+        int cur;
+        if(nums1[i] < nums2[j]) {
+            cur = nums1[i];
 
-                i++;
-            }else {
-                cur = nums2[j];
-                j++;
-            }
-            res.push_back(cur);
-        }
-
-        for(;i< len1;i++) {
-             res.push_back(nums1[i]);
-        }
-
-        for(;j< len2;j++) {
-             res.push_back(nums2[j]);
-        }
-
-        int len = res.size();
-        int middle_idx = len / 2;
-        if(len % 2 == 0) {
-            return (static_cast<double>(res[middle_idx - 1] + res[middle_idx]))/2;
+            i++;
         }else {
-            return res[middle_idx];
+            cur = nums2[j];
+            j++;
         }
+        res.push_back(cur);
     }
+
+    for(;i< len1;i++) {
+        res.push_back(nums1[i]);
+    }
+
+    for(;j< len2;j++) {
+        res.push_back(nums2[j]);
+    }
+
+    int len = res.size();
+    int middle_idx = len / 2;
+    if(len % 2 == 0) {
+        return (static_cast<double>(res[middle_idx - 1] + res[middle_idx]))/2;
+    }else {
+        return res[middle_idx];
+    }
+}
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     if(l1 == nullptr) return l2;
     if(l2 == nullptr) return l1;
@@ -473,7 +474,7 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     }
     // Handle any remaining overflow
     if (overflow > 0) {
-         result->val = overflow; // Set the last node value if there is an overflow
+        result->val = overflow; // Set the last node value if there is an overflow
     }
     return ret;
 }
@@ -586,22 +587,22 @@ void MainWindow::on_templateButton_clicked()
 
 
     // Initialize l1 and l2
-//    std::vector<int> values1 = {9, 9, 9, 9, 9, 9, 9};
-//    std::vector<int> values2 = {9, 9, 9, 9};
+    //    std::vector<int> values1 = {9, 9, 9, 9, 9, 9, 9};
+    //    std::vector<int> values2 = {9, 9, 9, 9};
 
-//    ListNode* l1 = createList(values1);
-//    ListNode* l2 = createList(values2);
+    //    ListNode* l1 = createList(values1);
+    //    ListNode* l2 = createList(values2);
 
-//    ListNode* res = addTwoNumbers(l1, l2);
-//    while(res != nullptr) {
-//        std::cout << "Add two number" << res->val << std::endl;
-//        res = res->next;
-//    }
-//    int temp = 1 / 10;
-//    std::cout << temp << std::endl;
-//    delete l1;
-//    delete l2;
-//    delete res;
+    //    ListNode* res = addTwoNumbers(l1, l2);
+    //    while(res != nullptr) {
+    //        std::cout << "Add two number" << res->val << std::endl;
+    //        res = res->next;
+    //    }
+    //    int temp = 1 / 10;
+    //    std::cout << temp << std::endl;
+    //    delete l1;
+    //    delete l2;
+    //    delete res;
     auto s1 = "babad";
     auto s2 = "cbbd";
     std::cout << longest_palindrome(s1) << std::endl;
@@ -612,17 +613,28 @@ void MainWindow::on_templateButton_clicked()
 
 void MainWindow::on_treeButton_clicked()
 {
-    Utils util;
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(3);
-    root->right->left = new TreeNode(4);
-    root->right->right = new TreeNode(5);
-    std::string serializedTree = util.serialize(root);
-    std::cout << "Serialized tree: " << serializedTree << std::endl;
+    //    Utils util;
+    //    TreeNode* root = new TreeNode(1);
+    //    root->left = new TreeNode(2);
+    //    root->right = new TreeNode(3);
+    //    root->right->left = new TreeNode(4);
+    //    root->right->right = new TreeNode(5);
+    //    std::string serializedTree = util.serialize(root);
+    //    std::cout << "Serialized tree: " << serializedTree << std::endl;
 
-    TreeNode* deserializedRoot = util.deserialize(serializedTree);
-    std::cout << "Deserialized tree (level-order): ";
-    util.printTree(deserializedRoot);
+    //    TreeNode* deserializedRoot = util.deserialize(serializedTree);
+    //    std::cout << "Deserialized tree (level-order): ";
+    //    util.printTree(deserializedRoot);
+    Zigzag zig;
+    std::string s1 = "PAYPALISHIRING";
+    int numRows1 = 3;
+    std::cout << zig.convert(s1, numRows1) << std::endl; // Output: "PAHNAPLSIIGYIR"
+
+//    std::string s2 = "PAYPALISHIRING";
+//    int numRows2 = 4;
+//    std::cout << zig.convert(s2, numRows2) << std::endl;  // Output: "PINALSIGYAHRPI"
+//    std::string s3 = "A";
+//    int numRows3 = 1;
+//    std::cout << zig.convert(s3, numRows3) << std::endl;  // Output: "A"
 }
 
