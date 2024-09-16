@@ -630,11 +630,11 @@ void MainWindow::on_treeButton_clicked()
     int numRows1 = 3;
     std::cout << zig.convert(s1, numRows1) << std::endl; // Output: "PAHNAPLSIIGYIR"
 
-//    std::string s2 = "PAYPALISHIRING";
-//    int numRows2 = 4;
-//    std::cout << zig.convert(s2, numRows2) << std::endl;  // Output: "PINALSIGYAHRPI"
-//    std::string s3 = "A";
-//    int numRows3 = 1;
-//    std::cout << zig.convert(s3, numRows3) << std::endl;  // Output: "A"
+    std::string s2 = "PAYPALISHIRING";
+    int numRows2 = 4;
+    std::cout << zig.convert(s2, numRows2) << std::endl;  // Output: "PINALSIGYAHRPI"
+    std::string s3 = "A";
+    int numRows3 = 1;
+    std::cout << zig.convert(s3, numRows3) << std::endl;  // Output: "A"
 }
 
