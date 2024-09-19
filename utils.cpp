@@ -8,6 +8,7 @@
 #include <list>
 #include <queue>
 #include <functional>
+#include <numeric>
 
 Utils::Utils()
 {
@@ -113,7 +114,7 @@ std::string Utils::serialize(TreeNode *root)
 {
 
     if(root == nullptr) {
-       return "#";
+        return "#";
     }
     std::queue<TreeNode*> queue;
     std::string result;
@@ -122,9 +123,9 @@ std::string Utils::serialize(TreeNode *root)
         TreeNode* node = queue.front();
         queue.pop();
         if(node!=nullptr) {
-             result += std::to_string(node->key) + ",";
-             queue.push(node->left);
-             queue.push(node->right);
+            result += std::to_string(node->key) + ",";
+            queue.push(node->left);
+            queue.push(node->right);
         }else {
             result += "#,";
         }
@@ -185,15 +186,73 @@ void Utils::printTree(TreeNode *root)
     std::cout << std::endl;
 }
 
+std::string Utils::intToRoman(int num)
+{
+    std::vector<std::pair<int, std::string>> value_to_roman = {
+        {1000, "M"},
+        {900, "CM"},
+        {500, "D"},
+        {400, "CD"},
+        {100, "C"},
+        {90, "XC"},
+        {50, "L"},
+        {40, "XL"},
+        {10, "X"},
+        {9, "IX"},
+        {5, "V"},
+        {4, "IV"},
+        {1, "I"}
+    };
+    std::vector<std::string> roman_numeral;
+
+    for(const auto& pair : value_to_roman) {
+        while(num >= pair.first) {
+
+            num -= pair.first;
+            roman_numeral.push_back(pair.second);
+        }
+    }
+
+    std::string result = std::accumulate(roman_numeral.begin(), roman_numeral.end(), std::string());
+
+    return result;
+}
+
+bool every(const std::vector<string>& vec, std::function<bool(string)> predicate) {
+    return std::all_of(vec.begin(), vec.end(), predicate);
+}
+std::string Utils::longestCommonPrefix(vector<string>& strs) {
+    if(strs[0].length() == 0) return "";
+    string common = strs[0].substr(0, 1);
+    int j = 0;
+    auto is_positive = [&](string str) {
+        auto result = static_cast<std::string::size_type>(j) < str.length() && str.substr(0, j+1) == common;
+        cout << "Str: " << str << " j: " << j << " common: " << common << " result: " << result << endl;
+        return result;
+    };
+    while(true) {
+        if (every(strs, is_positive)) {
+            j++;
+            common = strs[0].substr(0, j+1);
+        }else {
+            common = strs[0].substr(0, j);
+            break;
+        }
+    }
+    return common;
+}
+
+
+
 
 std::vector<std::string> Utils::generatePermutations(const std::string &s)
 {
-   std::vector<std::string> result;
-   std::string current = s;
-   std::sort(current.begin(), current.end());
-   std::vector<bool> used(s.size(), false);
-   std::string temp;
-   std::function<void()> backtrack = [&]() {
+    std::vector<std::string> result;
+    std::string current = s;
+    std::sort(current.begin(), current.end());
+    std::vector<bool> used(s.size(), false);
+    std::string temp;
+    std::function<void()> backtrack = [&]() {
         if(temp.size() == s.size()) {
             result.push_back(temp);
             return;
@@ -207,7 +266,7 @@ std::vector<std::string> Utils::generatePermutations(const std::string &s)
             temp.pop_back();
             used[i] = false;
         }
-   };
-   backtrack();
-   return result;
+    };
+    backtrack();
+    return result;
 }

@@ -7,6 +7,7 @@
 #include <vector>
 #include <vector>
 #include "treenode.h"
+using namespace std;
 
 class Utils
 {
@@ -22,6 +23,8 @@ public:
     std::string serialize(TreeNode* root);
     TreeNode* deserialize(std::string result);
     void printTree(TreeNode* root);
+    std::string intToRoman(int num);
+    std::string longestCommonPrefix(vector<string>& strs);
 };
 
 #endif // UTILS_H

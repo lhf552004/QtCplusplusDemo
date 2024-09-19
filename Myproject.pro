@@ -10,6 +10,7 @@ CONFIG += c++14
 
 SOURCES += \
     ListNode.cpp \
+    atoi.cpp \
     basic_file_system.cpp \
     chatwindow.cpp \
     complex.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
     Base.h \
     ListNode.h \
     Queen.h \
+    atoi.h \
     basic_file_system.h \
     chatwindow.h \
     commonseq.h \

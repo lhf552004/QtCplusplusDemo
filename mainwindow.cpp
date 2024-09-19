@@ -30,6 +30,7 @@
 #include "lru.h"
 #include "longest_palindrome.h"
 #include "zigzag.h"
+#include "atoi.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -625,16 +626,28 @@ void MainWindow::on_treeButton_clicked()
     //    TreeNode* deserializedRoot = util.deserialize(serializedTree);
     //    std::cout << "Deserialized tree (level-order): ";
     //    util.printTree(deserializedRoot);
-    Zigzag zig;
-    std::string s1 = "PAYPALISHIRING";
-    int numRows1 = 3;
-    std::cout << zig.convert(s1, numRows1) << std::endl; // Output: "PAHNAPLSIIGYIR"
+//    Zigzag zig;
+//    std::string s1 = "PAYPALISHIRING";
+//    int numRows1 = 3;
+//    std::cout << zig.convert(s1, numRows1) << std::endl; // Output: "PAHNAPLSIIGYIR"
 
-    std::string s2 = "PAYPALISHIRING";
-    int numRows2 = 4;
-    std::cout << zig.convert(s2, numRows2) << std::endl;  // Output: "PINALSIGYAHRPI"
-    std::string s3 = "A";
-    int numRows3 = 1;
-    std::cout << zig.convert(s3, numRows3) << std::endl;  // Output: "A"
+//    std::string s2 = "PAYPALISHIRING";
+//    int numRows2 = 4;
+//    std::cout << zig.convert(s2, numRows2) << std::endl;  // Output: "PINALSIGYAHRPI"
+//    std::string s3 = "A";
+//    int numRows3 = 1;
+//    std::cout << zig.convert(s3, numRows3) << std::endl;  // Output: "A"
+    Atoi atoi;
+    std::string s3 = "words and 987";
+    int result = atoi.myAtoi(s3);
+
+    Utils util;
+    std::string reoman = util.intToRoman(3749);
+    std::cout << reoman << std::endl;
+
+    std::vector<string> fruits = {"flower","flow","flight"};
+
+    auto common = util.longestCommonPrefix(fruits);
+    std::cout << "common prefix: " << common << std::endl;
 }
 
